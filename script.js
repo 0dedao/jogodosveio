@@ -44,7 +44,7 @@ function showWinnerPhrase(text, className) {
 }
 
 function showDraw() {
-    setBackground('lula bolsonaro.jpg');
+    setBackground('lula-bolsonaro.jpg');
     showWinnerPhrase('Paz e Amor', 'draw');
     soundDraw.play();
 
