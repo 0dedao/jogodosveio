@@ -10,6 +10,7 @@ const winnerAnnouncement = document.getElementById('winner-announcement');
 const winnerPhrase = document.getElementById('winner-phrase');
 const soundL = document.getElementById('sound-l');
 const soundPistol = document.getElementById('sound-pistol');
+const soundDraw = document.getElementById('sound-draw');
 
 // Jogadores
 const PLAYER_L = 'L';
@@ -42,6 +43,24 @@ function showWinnerPhrase(text, className) {
     setTimeout(() => winnerPhrase.classList.add('show'), 100);
 }
 
+function showDraw() {
+    setBackground('lula bolsonaro.jpg');
+    showWinnerPhrase('Paz e Amor', 'draw');
+    soundDraw.play();
+
+    // Confete branco
+    const duration = setInterval(() => {
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: ['#ffffff']
+        });
+    }, 200);
+
+    setTimeout(() => clearInterval(duration), 2000);
+}
+
 // Funções do jogo
 function handleClick(e) {
     const cell = e.target;
@@ -68,6 +87,7 @@ function handleClick(e) {
         scores.draw++;
         updateScores();
         message.textContent = 'Empate!';
+        showDraw();
         return;
     }
 
